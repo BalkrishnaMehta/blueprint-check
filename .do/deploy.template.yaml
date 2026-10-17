@@ -34,4 +34,18 @@ spec:
       envs:
         - key: NEXT_PUBLIC_API_URL
           scope: RUN_AND_BUILD_TIME
-          value: ${api.PUBLIC_URL}
+          value: /svc
+
+  ingress:
+    rules:
+      - component:
+          name: api
+          preserve_path_prefix: false
+        match:
+          path:
+            prefix: /svc
+      - component:
+          name: web
+        match:
+          path:
+            prefix: /
