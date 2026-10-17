@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.env
+web/node_modules/
+web/.next/
+sample/app/graphify-out/cache/
+sample/app/graphify-out/manifest.json
+sample/app/graphify-out/.graphify_*

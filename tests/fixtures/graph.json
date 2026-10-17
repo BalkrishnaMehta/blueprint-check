@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "admin.service",
+      "label": "audit",
+      "source_file": "admin/service.py",
+      "source_location": "admin/service.py:1"
+    },
+    {
+      "id": "auth.service",
+      "label": "login",
+      "source_file": "auth/service.py",
+      "source_location": "auth/service.py:1"
+    },
+    {
+      "id": "billing.service",
+      "label": "invoice",
+      "source_file": "billing/service.py",
+      "source_location": "billing/service.py:1"
+    },
+    {
+      "id": "payments.service",
+      "label": "charge",
+      "source_file": "payments/service.py",
+      "source_location": "payments/service.py:1"
+    },
+    {
+      "id": "notifications.service",
+      "label": "notify",
+      "source_file": "notifications/service.py",
+      "source_location": "notifications/service.py:1"
+    }
+  ],
+  "edges": [
+    {"source": "admin.service", "target": "billing.service", "relation": "imports"},
+    {"source": "auth.service", "target": "admin.service", "relation": "imports"},
+    {"source": "billing.service", "target": "payments.service", "relation": "imports"},
+    {"source": "payments.service", "target": "notifications.service", "relation": "imports"},
+    {"source": "notifications.service", "target": "payments.service", "relation": "imports"}
+  ]
+}

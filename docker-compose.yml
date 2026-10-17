@@ -1,0 +1,14 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemma-4-26b-a4b-it}
+      VISION_BASE_URL: http://ollama:11434/v1
+      VISION_MODEL: ${VISION_MODEL:-gemma4:e4b}
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"

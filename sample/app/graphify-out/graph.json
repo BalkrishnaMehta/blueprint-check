@@ -1,0 +1,419 @@
+{
+  "nodes": [
+    {
+      "id": "admin.service",
+      "label": "audit",
+      "source_file": "admin/service.py",
+      "source_location": "admin/service.py:1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "auth.service",
+      "label": "login",
+      "source_file": "auth/service.py",
+      "source_location": "auth/service.py:1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "billing.service",
+      "label": "invoice",
+      "source_file": "billing/service.py",
+      "source_location": "billing/service.py:1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "payments.service",
+      "label": "charge",
+      "source_file": "payments/service.py",
+      "source_location": "payments/service.py:1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "notifications.service",
+      "label": "notify",
+      "source_file": "notifications/service.py",
+      "source_location": "notifications/service.py:1",
+      "_origin": "semantic"
+    },
+    {
+      "id": "admin_init",
+      "label": "admin/__init__.py",
+      "file_type": "code",
+      "source_file": "admin/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "admin_service",
+      "label": "admin/service.py",
+      "file_type": "code",
+      "source_file": "admin/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "admin_service_audit",
+      "label": "audit()",
+      "file_type": "code",
+      "source_file": "admin/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "auth_init",
+      "label": "auth/__init__.py",
+      "file_type": "code",
+      "source_file": "auth/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "auth_service",
+      "label": "auth/service.py",
+      "file_type": "code",
+      "source_file": "auth/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "auth_service_login",
+      "label": "login()",
+      "file_type": "code",
+      "source_file": "auth/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "billing_init",
+      "label": "billing/__init__.py",
+      "file_type": "code",
+      "source_file": "billing/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "billing_service",
+      "label": "billing/service.py",
+      "file_type": "code",
+      "source_file": "billing/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "billing_service_invoice",
+      "label": "invoice()",
+      "file_type": "code",
+      "source_file": "billing/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "notifications_init",
+      "label": "notifications/__init__.py",
+      "file_type": "code",
+      "source_file": "notifications/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "notifications_service",
+      "label": "notifications/service.py",
+      "file_type": "code",
+      "source_file": "notifications/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "notifications_service_notify",
+      "label": "notify()",
+      "file_type": "code",
+      "source_file": "notifications/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "payments_init",
+      "label": "payments/__init__.py",
+      "file_type": "code",
+      "source_file": "payments/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "payments_service",
+      "label": "payments/service.py",
+      "file_type": "code",
+      "source_file": "payments/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "payments_service_charge",
+      "label": "charge()",
+      "file_type": "code",
+      "source_file": "payments/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "admin.service",
+      "target": "billing.service",
+      "relation": "imports",
+      "_origin": "semantic",
+      "source_file": "admin/service.py"
+    },
+    {
+      "source": "auth.service",
+      "target": "admin.service",
+      "relation": "imports",
+      "_origin": "semantic",
+      "source_file": "auth/service.py"
+    },
+    {
+      "source": "billing.service",
+      "target": "payments.service",
+      "relation": "imports",
+      "_origin": "semantic",
+      "source_file": "billing/service.py"
+    },
+    {
+      "source": "payments.service",
+      "target": "notifications.service",
+      "relation": "imports",
+      "_origin": "semantic",
+      "source_file": "payments/service.py"
+    },
+    {
+      "source": "notifications.service",
+      "target": "payments.service",
+      "relation": "imports",
+      "_origin": "semantic",
+      "source_file": "notifications/service.py"
+    },
+    {
+      "source": "admin_service",
+      "target": "billing_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "admin_service",
+      "target": "admin_service_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "auth_service",
+      "target": "admin_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "auth/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "auth_service",
+      "target": "auth_service_login",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "auth/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service",
+      "target": "payments_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service",
+      "target": "billing_service_invoice",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "notifications_service",
+      "target": "payments_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "notifications/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "notifications_service",
+      "target": "notifications_service_notify",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "notifications/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "payments_service",
+      "target": "notifications_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "payments/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "payments_service",
+      "target": "payments_service_charge",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "payments/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "admin_service",
+      "target": "billing_service_invoice",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "auth_service",
+      "target": "admin_service_audit",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "auth/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service",
+      "target": "payments_service_charge",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "notifications_service",
+      "target": "payments_service_charge",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "notifications/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "payments_service",
+      "target": "notifications_service_notify",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "payments/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "admin_service_audit",
+      "target": "billing_service_invoice",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "admin/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "auth_service_login",
+      "target": "admin_service_audit",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "auth/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service_invoice",
+      "target": "payments_service_charge",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "notifications_service_notify",
+      "target": "payments_service_charge",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "notifications/service.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "payments_service_charge",
+      "target": "notifications_service_notify",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "payments/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

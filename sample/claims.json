@@ -1,0 +1,9 @@
+{
+  "components": ["billing", "auth", "payments", "notifications"],
+  "edges": [
+    {"from": "billing", "to": "auth"},
+    {"from": "billing", "to": "payments"},
+    {"from": "payments", "to": "notifications"},
+    {"from": "notifications", "to": "payments"}
+  ]
+}
