@@ -3,6 +3,7 @@ services:
     name: blueprint-api
     runtime: python
     plan: free
+    region: oregon
     buildCommand: pip install .
     startCommand: uvicorn blueprint.api:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
@@ -16,6 +17,7 @@ services:
     name: blueprint-web
     runtime: node
     plan: free
+    region: oregon
     rootDir: web
     buildCommand: npm ci && npm run build
     startCommand: npm start
