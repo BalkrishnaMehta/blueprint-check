@@ -1,0 +1,249 @@
+{
+  "nodes": [
+    {
+      "id": "checkout_service",
+      "label": "checkout/service.py",
+      "file_type": "code",
+      "source_file": "checkout/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "checkout_service_start",
+      "label": "start()",
+      "file_type": "code",
+      "source_file": "checkout/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "desk_service",
+      "label": "desk/service.py",
+      "file_type": "code",
+      "source_file": "desk/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "desk_service_assist",
+      "label": "assist()",
+      "file_type": "code",
+      "source_file": "desk/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "inventory_service",
+      "label": "inventory/service.py",
+      "file_type": "code",
+      "source_file": "inventory/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "inventory_service_count",
+      "label": "count()",
+      "file_type": "code",
+      "source_file": "inventory/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "warehouse_service",
+      "label": "warehouse/service.py",
+      "file_type": "code",
+      "source_file": "warehouse/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "warehouse_service_reserve",
+      "label": "reserve()",
+      "file_type": "code",
+      "source_file": "warehouse/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "checkout_service",
+      "target": "warehouse_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "checkout/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checkout_service",
+      "target": "checkout_service_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "checkout/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "desk_service",
+      "target": "checkout_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "desk/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "desk_service",
+      "target": "desk_service_assist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "desk/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "inventory_service",
+      "target": "warehouse_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "inventory/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "inventory_service",
+      "target": "inventory_service_count",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "inventory/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "warehouse_service",
+      "target": "inventory_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "warehouse/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "warehouse_service",
+      "target": "warehouse_service_reserve",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "warehouse/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checkout_service",
+      "target": "warehouse_service_reserve",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "checkout/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "desk_service",
+      "target": "checkout_service_start",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "desk/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "inventory_service",
+      "target": "warehouse_service_reserve",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "inventory/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "warehouse_service",
+      "target": "inventory_service_count",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "warehouse/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "checkout_service_start",
+      "target": "warehouse_service_reserve",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "checkout/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "desk_service_assist",
+      "target": "checkout_service_start",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "desk/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "inventory_service_count",
+      "target": "warehouse_service_reserve",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "inventory/service.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "warehouse_service_reserve",
+      "target": "inventory_service_count",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "warehouse/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

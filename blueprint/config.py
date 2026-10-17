@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from blueprint.vision import DEFAULT_MODEL
 
-LOCAL_MODEL = "gemma4:e4b"
+LOCAL_MODEL = "gemma4:e2b"
 
 
 class Settings(BaseSettings):

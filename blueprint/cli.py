@@ -36,7 +36,11 @@ def run(argv: list[str] | None = None) -> int:
     check.add_argument("--claims", type=Path)
     check.add_argument("--graph", type=Path)
     check.add_argument("--model")
-    check.add_argument("--provider", default="auto", choices=["auto", "gemini", "local", "ollama", "vllm", "sglang"])
+    check.add_argument(
+        "--provider",
+        default="auto",
+        choices=["auto", "gemini", "local", "ollama", "vllm", "sglang", "hosted"],
+    )
 
     info = sub.add_parser("info", help="Show model, key, and graph status")
     info.add_argument("--repo", type=Path, default=Path("sample/app"))
@@ -71,7 +75,8 @@ def _info(repo: Path) -> int:
     console.print(f"blueprint {__version__}")
     console.print(f"gemini model: {settings.gemini_model}")
     console.print(f"GEMINI_API_KEY: {_mask(key)}")
-    console.print(f"local vision: {settings.vision_base_url} ({settings.vision_model})")
+    console.print(f"vision: {settings.vision_base_url} ({settings.vision_model})")
+    console.print(f"VISION_API_KEY: {_mask(settings.vision_api_key)}")
     state = "present" if graph_file.is_file() else "not found"
     console.print(f"graph: {graph_file if graph_file.is_file() else 'missing'} ({state})")
     return 0

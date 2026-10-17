@@ -1,0 +1,156 @@
+{
+  "nodes": [
+    {
+      "id": "billing_service",
+      "label": "billing/service.py",
+      "file_type": "code",
+      "source_file": "billing/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "billing_service_pay",
+      "label": "pay()",
+      "file_type": "code",
+      "source_file": "billing/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "ledger_service",
+      "label": "ledger/service.py",
+      "file_type": "code",
+      "source_file": "ledger/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "ledger_service_record",
+      "label": "record()",
+      "file_type": "code",
+      "source_file": "ledger/service.py",
+      "source_location": "L1",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "orders_service",
+      "label": "orders/service.py",
+      "file_type": "code",
+      "source_file": "orders/service.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "orders_service_place",
+      "label": "place()",
+      "file_type": "code",
+      "source_file": "orders/service.py",
+      "source_location": "L4",
+      "_callable": true,
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "billing_service",
+      "target": "ledger_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service",
+      "target": "billing_service_pay",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "ledger_service",
+      "target": "ledger_service_record",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "ledger/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "orders_service",
+      "target": "billing_service",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "orders_service",
+      "target": "orders_service_place",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/service.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service",
+      "target": "ledger_service_record",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "orders_service",
+      "target": "billing_service_pay",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/service.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "billing_service_pay",
+      "target": "ledger_service_record",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "billing/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "orders_service_place",
+      "target": "billing_service_pay",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "orders/service.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

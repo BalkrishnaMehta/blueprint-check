@@ -37,9 +37,31 @@ def test_local_provider_reads_openai_compatible_json(monkeypatch):
     assert parsed["edges"] == [{"from": "billing", "to": "auth"}]
 
 
+def test_hosted_uses_the_same_client():
+    assert select_provider("hosted", Settings()) == "local"
+
+
+def test_hosted_without_a_key_does_not_call_the_server(monkeypatch):
+    def explode(request: httpx.Request) -> httpx.Response:
+        raise AssertionError(f"should not call {request.url}")
+
+    client = httpx.Client(transport=httpx.MockTransport(explode))
+    monkeypatch.setattr("blueprint.providers.httpx.post", client.post)
+    monkeypatch.setattr(
+        "blueprint.providers.get_settings",
+        lambda: Settings(vision_base_url="https://vision.example/v1", vision_api_key=""),
+    )
+    try:
+        read_image(b"png", "image/png", None, "hosted")
+    except DiagramError as exc:
+        assert "VISION_API_KEY" in str(exc)
+    else:
+        raise AssertionError("expected DiagramError")
+
+
 def test_unknown_provider_is_rejected():
     try:
-        select_provider("hosted", Settings())
+        select_provider("nope", Settings())
     except DiagramError as exc:
         assert "provider" in str(exc)
     else:

@@ -1,0 +1,6 @@
+{
+  "components": ["checkout", "warehouse", "shipping"],
+  "edges": [
+    {"from": "checkout", "to": "shipping"}
+  ]
+}

@@ -24,12 +24,28 @@ app.add_middleware(
 )
 
 
+_EXAMPLES = (
+    ("sample", "Billing", "The diagram draws billing to auth. The code does not.", "sample/app", "sample/claims.json"),
+    ("orders", "Orders", "The diagram matches the imports.", "tracks/clean", "tracks/clean/claims.json"),
+    ("warehouse", "Warehouse", "The diagram draws shipping. The code cycles warehouse and inventory.", "tracks/drift", "tracks/drift/claims.json"),
+)
+
+
 def _root() -> Path:
     here = Path(__file__).resolve()
     for parent in here.parents:
         if (parent / "pyproject.toml").is_file() and (parent / "sample").is_dir():
             return parent
     return Path.cwd()
+
+
+def _resolve(root: Path, value: str | None, default: Path | None = None) -> Path | None:
+    if not value:
+        return default
+    path = Path(value)
+    if not path.is_absolute():
+        path = root / path
+    return path
 
 
 def serve() -> None:
@@ -65,6 +81,23 @@ def sample_claims() -> dict:
     return json.loads((_root() / "sample" / "claims.json").read_text(encoding="utf-8"))
 
 
+@app.get("/v1/examples")
+def examples() -> list[dict]:
+    root = _root()
+    listed = []
+    for example_id, title, detail, repo, claims in _EXAMPLES:
+        listed.append(
+            {
+                "id": example_id,
+                "title": title,
+                "detail": detail,
+                "repo": repo,
+                "claims": json.loads((root / claims).read_text(encoding="utf-8")),
+            }
+        )
+    return listed
+
+
 @app.get("/v1/sample/diagram")
 def sample_diagram() -> FileResponse:
     path = _root() / "sample" / "diagram.png"
@@ -83,8 +116,8 @@ async def create_check(
     image: UploadFile | None = File(None),
 ) -> CheckOut:
     root = _root()
-    repo_path = Path(repo) if repo else root / "sample" / "app"
-    graph_path = Path(graph) if graph else None
+    repo_path = _resolve(root, repo, root / "sample" / "app")
+    graph_path = _resolve(root, graph)
     claims_data = None
     image_payload = None
     if claims:

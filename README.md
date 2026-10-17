@@ -29,7 +29,7 @@ blueprint check sample/app --image sample/diagram.png --provider gemini
 uvicorn blueprint.api:app --reload
 ```
 
-`POST /v1/checks` takes a multipart form: `claims` (JSON) or `image`, plus `provider` (`auto`, `gemini`, `ollama`, `vllm`, `sglang`). `GET /health`, `GET /info`, `GET /v1/sample/claims`, and `GET /v1/sample/diagram` are there for the demo page.
+`POST /v1/checks` takes a multipart form: `claims` (JSON) or `image`, plus `provider` (`auto`, `gemini`, `ollama`, `vllm`, `sglang`, `hosted`). `GET /health`, `GET /info`, `GET /v1/sample/claims`, and `GET /v1/sample/diagram` are there for the demo page.
 
 ```text
 cd web
@@ -39,20 +39,22 @@ npm run dev
 
 The page is at `http://localhost:3000`. It calls `http://127.0.0.1:8000`.
 
-## Local models
+## Gemma, local or hosted
 
-Ollama, vLLM, and SGLang all speak `/v1/chat/completions`. One client covers all three. Set `VISION_BASE_URL`:
+Ollama, vLLM, SGLang, and a hosted OpenAI-compatible server share one client. Set three variables in `.env`:
 
-- Ollama: `http://127.0.0.1:11434/v1` (the default)
-- vLLM: `http://127.0.0.1:8000/v1`
-- SGLang: `http://127.0.0.1:30000/v1`
+- `VISION_BASE_URL` — `http://127.0.0.1:11434/v1` for Ollama, `:8000/v1` for vLLM, `:30000/v1` for SGLang, or any other `/v1`
+- `VISION_MODEL` — `gemma4:e2b` on a CPU, or `gemma4:e4b` when you have the room
+- `VISION_API_KEY` — `ollama` for a local server, or the host's key
 
 ```text
-ollama pull gemma4:e4b
+ollama pull gemma4:e2b
 blueprint check sample/app --image sample/diagram.png --provider ollama
 ```
 
-`docker compose up` starts the API and an Ollama container. Pull the model inside that container before using `--provider ollama`.
+`--provider hosted` is the same client. Use it when `VISION_BASE_URL` points at another machine.
+
+`docker compose up` starts the API and Ollama together. Leave `.env` unset and the API talks to that Ollama. To use a different OpenAI-compatible server, set `VISION_BASE_URL`, `VISION_MODEL`, and `VISION_API_KEY` in `.env` first. Pull `gemma4:e2b` inside the Ollama container before using the bundled model.
 
 ## Graph
 

@@ -1,0 +1,7 @@
+{
+  "components": ["orders", "billing", "ledger"],
+  "edges": [
+    {"from": "orders", "to": "billing"},
+    {"from": "billing", "to": "ledger"}
+  ]
+}

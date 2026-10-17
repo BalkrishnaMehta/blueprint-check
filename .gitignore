@@ -6,6 +6,7 @@ __pycache__/
 dist/
 build/
 .env
+.probe/
 web/node_modules/
 web/.next/
 sample/app/graphify-out/cache/

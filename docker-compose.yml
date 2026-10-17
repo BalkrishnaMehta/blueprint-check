@@ -6,8 +6,9 @@ services:
     environment:
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemma-4-26b-a4b-it}
-      VISION_BASE_URL: http://ollama:11434/v1
-      VISION_MODEL: ${VISION_MODEL:-gemma4:e4b}
+      VISION_BASE_URL: ${VISION_BASE_URL:-http://ollama:11434/v1}
+      VISION_MODEL: ${VISION_MODEL:-gemma4:e2b}
+      VISION_API_KEY: ${VISION_API_KEY:-ollama}
   ollama:
     image: ollama/ollama:latest
     ports:
