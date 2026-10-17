@@ -39,6 +39,12 @@ npm run dev
 
 The page is at `http://localhost:3000`. It calls `http://127.0.0.1:8000`.
 
+## Deploy
+
+[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/BalkrishnaMehta/blueprint-check/tree/main)
+
+That starts the API and the page on App Platform. The page checks the committed claims and does not need a model. Set `VISION_BASE_URL`, `VISION_MODEL`, and `VISION_API_KEY` on the API service when a Gemma server is available.
+
 ## Gemma, local or hosted
 
 Ollama, vLLM, SGLang, and a hosted OpenAI-compatible server share one client. Set three variables in `.env`:

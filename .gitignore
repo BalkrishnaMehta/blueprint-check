@@ -7,6 +7,7 @@ dist/
 build/
 .env
 .probe/
+.agents/
 web/node_modules/
 web/.next/
 sample/app/graphify-out/cache/

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -15,10 +16,16 @@ from blueprint.schemas import CheckOut, InfoOut, to_check_out
 from blueprint.service import execute
 from blueprint.vision import DiagramError, _mime
 
+def _origins() -> list[str]:
+    defaults = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    extra = [item.strip().rstrip("/") for item in os.environ.get("CORS_ORIGINS", "").split(",") if item.strip()]
+    return list(dict.fromkeys([*defaults, *extra]))
+
+
 app = FastAPI(title="Blueprint", version=__version__)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=_origins(),
     allow_methods=["*"],
     allow_headers=["*"],
 )
