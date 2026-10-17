@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react"
 
-const API = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"
+const BUILT_IN_API = process.env.NEXT_PUBLIC_API_URL || ""
 
 type Edge = { source: string; target: string; evidence: string }
 type Report = {
@@ -28,12 +28,24 @@ export default function Page() {
   const [report, setReport] = useState<Report | null>(null)
   const [error, setError] = useState("")
   const [busy, setBusy] = useState(false)
+  const [apiBase, setApiBase] = useState(BUILT_IN_API)
 
   const example = examples.find((item) => item.id === selected) || examples[0]
 
   useEffect(() => {
+    if (BUILT_IN_API) return
     const controller = new AbortController()
-    fetch(`${API}/v1/examples`, { signal: controller.signal })
+    fetch("/api/config", { signal: controller.signal })
+      .then((response) => response.json())
+      .then((payload: { api?: string }) => setApiBase(payload.api || "http://127.0.0.1:8000"))
+      .catch(() => setApiBase("http://127.0.0.1:8000"))
+    return () => controller.abort()
+  }, [])
+
+  useEffect(() => {
+    if (!apiBase) return
+    const controller = new AbortController()
+    fetch(`${apiBase}/v1/examples`, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error(`Examples returned ${response.status}`)
         return response.json()
@@ -44,14 +56,14 @@ export default function Page() {
       })
       .catch((err: unknown) => {
         if (err instanceof DOMException && err.name === "AbortError") return
-        setError(`The API at ${API} did not respond.`)
+        setError(`The API at ${apiBase} did not respond.`)
       })
     return () => controller.abort()
-  }, [])
+  }, [apiBase])
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault()
-    if (!example) return
+    if (!example || !apiBase) return
     setBusy(true)
     setError("")
     const body = new FormData()
@@ -60,7 +72,7 @@ export default function Page() {
     try {
       if (file) body.set("image", file)
       else body.set("claims", JSON.stringify(example.claims))
-      const response = await fetch(`${API}/v1/checks`, { method: "POST", body })
+      const response = await fetch(`${apiBase}/v1/checks`, { method: "POST", body })
       const text = await response.text()
       let payload: { detail?: string } = {}
       if (text) {
@@ -78,7 +90,7 @@ export default function Page() {
       setReport(payload as Report)
     } catch (err) {
       setReport(null)
-      setError(explain(err instanceof Error ? err.message : `The API at ${API} did not respond.`))
+      setError(explain(err instanceof Error ? err.message : `The API at ${apiBase} did not respond.`))
     } finally {
       setBusy(false)
     }
@@ -113,7 +125,7 @@ export default function Page() {
           ))}
         </div>
         {example?.id === "sample" ? (
-          <img src={`${API}/v1/sample/diagram`} alt="Drawn diagram: billing points at auth and payments. Payments and notifications point at each other." />
+          <img src={`${apiBase}/v1/sample/diagram`} alt="Drawn diagram: billing points at auth and payments. Payments and notifications point at each other." />
         ) : null}
         <div className="controls">
           <label>

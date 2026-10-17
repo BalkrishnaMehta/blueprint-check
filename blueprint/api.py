@@ -19,6 +19,8 @@ from blueprint.vision import DiagramError, _mime
 def _origins() -> list[str]:
     defaults = ["http://localhost:3000", "http://127.0.0.1:3000"]
     extra = [item.strip().rstrip("/") for item in os.environ.get("CORS_ORIGINS", "").split(",") if item.strip()]
+    if "*" in extra:
+        return ["*"]
     return list(dict.fromkeys([*defaults, *extra]))
 
 

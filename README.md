@@ -41,9 +41,9 @@ The page is at `http://localhost:3000`. It calls `http://127.0.0.1:8000`.
 
 ## Deploy
 
-[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/BalkrishnaMehta/blueprint-check/tree/main)
+[Deploy on Render](https://render.com/deploy?repo=https://github.com/BalkrishnaMehta/blueprint-check) starts the API and the page on the free plan. The first open can take a minute while the free instances wake up. The page checks the committed claims and does not need a model.
 
-That starts the API and the page on App Platform. The page checks the committed claims and does not need a model. Set `VISION_BASE_URL`, `VISION_MODEL`, and `VISION_API_KEY` on the API service when a Gemma server is available.
+DigitalOcean App Platform can run the same repo, and it asks for a payment method before the first app even when a credit is on the account.
 
 ## Gemma, local or hosted
 
